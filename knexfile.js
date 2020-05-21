@@ -1,5 +1,5 @@
 // Update with your config settings.
-const pgConnection = process.env.DATABASE_URL || "postgresql://postgres@localhost/auth";
+// const pgConnection = process.env.DATABASE_URL || "postgresql://postgres@localhost/auth";
 
 require("dotenv").config();
 
@@ -24,21 +24,6 @@ module.exports = {
     },
   },
 
-  staging: {
-    client: 'sqlite3',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
 
   testing: {
     client: "sqlite3",
@@ -54,19 +39,7 @@ module.exports = {
     },
   },
 
-  production: {
-    client: "pg", // npm i pg
-    connection: pgConnection,
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      directory: "./data/migrations",
-    },
-    seeds: {
-      directory: "./data/seeds",
-    },
-  },
 
 };
+
+//only need production and staging if hosting to horoku
