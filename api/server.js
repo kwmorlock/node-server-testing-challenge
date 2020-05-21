@@ -1,23 +1,21 @@
 const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 
-const Hobbits = require("../hobbits/hobbitsModel.js");
+const authRouter = require("../auth/auth-router.js");
+const usersRouter = require("../users/users-router.js");
 
 const server = express();
 
+server.use(helmet());
 server.use(express.json());
+server.use(cors());
+
+server.use("/api/auth", authRouter);
+server.use("/api/users", usersRouter);
 
 server.get("/", (req, res) => {
-  res.status(200).json({ api: "up" });
-});
-
-server.get("/hobbits", (req, res) => {
-  Hobbits.getAll()
-    .then(hobbits => {
-      res.status(200).json(hobbits);
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
+  res.json({ api: "I want to take a nap" });
 });
 
 module.exports = server;
